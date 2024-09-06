@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '109a28e2ca60f29c130bdf14c32d12bc988f6ad6f90f682a6ab38a126b76ee09325463519d6830aea8125e1118da9b1f3d4ef8bfafff4bb8d10edd7b1f3fad72'
+  # config.secret_key = '15eadc54f83d58720bd6378ce04e6cac418610a79a18f25a4f737fd6973adfdd3edada63390b48d8b382a527598f8b4da04447ed77bb12a019ee5de45739ff22'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -24,7 +24,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -36,7 +36,7 @@ Devise.setup do |config|
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
-  require 'devise/orm/active_record'
+  require "devise/orm/active_record"
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'db5b1890c70d64f3ca60a2b2f27602694626fc6250f7d9ea9fcd60b2cb559115d1522a0c974520389331d10d4a7f86cf4803727deac0e7e7fe62a84825fe17ed'
+  # config.pepper = 'eaeaa928e9dbe1fd3791f701ef92df4a88355c52c874169bc8bab539c0620a790eb3cdec7555bb4a788f65f7ebf3a74d9f97c24c11f4cbe53ca11d9fb140d2ae'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false

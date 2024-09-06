@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   root "home#index"
 
   #search
-  post "search" => "search#search"
-  get "search" => "search#search"
+  get "search", to: "search#search", as: "search"
+  get "serach_details/:id", to: "search#search_details", as: "search_details"
 end

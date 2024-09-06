@@ -1,0 +1,54 @@
+<div class="container ">
+<h1 class="p-1 mt-2 w-75 text-wrap"><%= @chg_spot.name %></h1>
+<div class="container-flouid d-flex flex-row justify-content-between">
+  <table class="w-50 table table-bordered h-auto mb-0 me-1 ">
+    <tr>
+      <td style="background-color: rgb(242,242,242)">Street Address</td>
+      <td><%= @chg_spot.address %></td>
+    </tr>
+    <tr>
+      <td style="background-color: rgb(242,242,242)">Region</td>
+      <td><%= @chg_spot.region %></td>
+    </tr>
+    <tr>
+      <td style="background-color: rgb(242,242,242)">Province</td>
+      <td><%= @chg_spot.province %></td>
+    </tr>
+    <tr>
+      <td style="background-color: rgb(242,242,242)">City</td>
+      <td><%= @chg_spot.city %></td>
+    </tr>
+    <tr>
+      <td style="background-color: rgb(242,242,242)">Barangay</td>
+      <td><%= @chg_spot.barangay %></td>
+    </tr>
+    <tr>
+      <td style="background-color: rgb(242,242,242)">Description</td>
+      <td><%= @chg_spot.description %></td>
+    </tr>
+    <tr>
+      <td style="background-color: rgb(242,242,242)">Notes</td>
+      <td><%= @chg_spot.notes %></td>
+    </tr>
+  </table>
+  
+    <div class="position-relative w-auto border border-1 rounded border-primary shadow">
+
+      <%= js_map [{ latitude: @chg_spot.lat, longitude: @chg_spot.lng }],
+                 width: "600px",
+                 height: "500px",
+                 zoom: 12,
+                 style: "mapbox://styles/mapbox/streets-v12" %>
+    </div>
+  </div>
+
+  <span class="fst-italic text-secondary">Last updated: <%= @chg_spot.updated_at.strftime("%B %d, %Y") %></span>
+  <span class="fst-italic text-secondary">by <%= @chg_spot.created_by %></span>
+  <br>
+  <span class="fst-italic text-secondary">Created: <%= @chg_spot.created_at.strftime("%B %d, %Y") %></span>
+  <span class="fst-italic text-secondary">by <%= @chg_spot.created_by %></span>
+
+ 
+</div>
+
+ 

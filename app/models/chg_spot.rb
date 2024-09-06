@@ -8,14 +8,11 @@ class ChgSpot < ApplicationRecord
   validates :name, presence: true
   validates :address, presence: true
 
-  ## ransack search
-  def self.ransackable_attributes(_auth_object = nil)
-    [
-      "region",
-      "province",
-      "city",
-      "barangay",
-      "address",
-    ]
+  # Define ransackable attributes
+  def self.ransackable_attributes(auth_object = nil)
+    ["name", "region", "province", "address", "barangay", "city"]
+  end
+  def self.ransackable_associations(auth_object = nil)
+    ["user", "comments"]
   end
 end

@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Search Results</h1>
+        </div>
+    </div>
+<% @result.each do |res| %>
+    
+
+    <div class="card">
+        <div class="card-header">
+            <h4><%= res.name %></h4>
+        </div>
+        <div class="card-body">
+            <h6 class="card-title"><%= res.city %>, <%= res.province %></h6>
+              <div id="collapse-example" class="collapse show" aria-labelledby="heading-example">
+                <div class="card-body">
+                    <h6><%= res.notes %></h6>
+                </div>
+              </div>
+
+            <%= link_to "Details", search_details_path(res), { class: "btn btn-primary", title: "" } %>
+            
+        </div>
+    </div>
+  <br>
+    <% end %>
+</div>
