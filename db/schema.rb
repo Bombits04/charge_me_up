@@ -19,8 +19,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_06_135818) do
     t.string "barangay"
     t.string "address"
     t.boolean "is_approved"
-    t.integer "upvote"
-    t.integer "downvote"
+    t.integer "score"
     t.string "created_by"
     t.integer "user_id"
     t.string "lat"
@@ -58,4 +57,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_06_135818) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
 end

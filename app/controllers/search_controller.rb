@@ -9,4 +9,8 @@ class SearchController < ApplicationController
     @chg_spot = ChgSpot.find(params[:id])
     render :search_details
   end
+
+  def show
+    @chg_spot = ChgSpot.find(params[:id])
+  end
 end

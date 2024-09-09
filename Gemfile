@@ -72,3 +72,5 @@ gem "devise", "~> 4.9"
 gem "rspec", "~> 3.13"
 
 gem "ransack", "~> 4.2"
+
+gem "mapkick-rb"

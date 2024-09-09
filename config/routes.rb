@@ -12,4 +12,12 @@ Rails.application.routes.draw do
   #search
   get "search", to: "search#search", as: "search"
   get "serach_details/:id", to: "search#search_details", as: "search_details"
+
+  resources :chg_spots do
+    resources :comments, only: [:create]
+    member do
+      post "upvote"
+      post "downvote"
+    end
+  end
 end

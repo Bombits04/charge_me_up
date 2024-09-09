@@ -31,10 +31,10 @@ chg_spot = ChgSpot.create!(name: "Ricardo's Vista Del Cielo",
                            created_by: admin_user.username)
 
 # Create a comment for the chg_spot above
-Comment.create!(chg_spot: chg_spot,
-                user: admin_user,
-                comment: "This is a great spot!",
-                is_cmt_approved: true)
+# Comment.create!(chg_spot: chg_spot,
+#                 user: admin_user,
+#                 comment: "This is a great spot!",
+#                 is_cmt_approved: true)
 
 # Create a chg_spot
 chg_spot = ChgSpot.create!(name: "Screamery Lakeshore",

@@ -8,8 +8,7 @@ class CreateChgSpots < ActiveRecord::Migration[7.1]
       t.string :barangay
       t.string :address
       t.boolean :is_approved
-      t.integer :upvote
-      t.integer :downvote
+      t.integer :score
       t.string :created_by
       t.integer :user_id
       t.string :lat
