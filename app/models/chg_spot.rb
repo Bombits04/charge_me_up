@@ -8,6 +8,8 @@ class ChgSpot < ApplicationRecord
   validates :name, presence: true
   validates :address, presence: true
 
+  after_initialize :set_default_score, if: :new_record?
+
   # Define ransackable attributes
   def self.ransackable_attributes(auth_object = nil)
     ["name", "region", "province", "address", "barangay", "city"]
@@ -23,5 +25,11 @@ class ChgSpot < ApplicationRecord
 
   def downvote
     decrement!(:score)
+  end
+
+  private
+
+  def set_default_score
+    self.score ||= 0
   end
 end
