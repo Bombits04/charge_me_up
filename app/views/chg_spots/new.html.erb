@@ -1,0 +1,187 @@
+
+<div class="container-sm">
+<h1>Add a New Charging Spot</h1>
+<div class=" d-flex flex-row justify-content-center p-5">
+  
+    <%= form_with model: @chg_spot, local: true, html: { style: "width: 43%;" } do |form| %>
+        <div class="form-group ps-3 pe-3 pt-3">
+          <%= form.label :name %>
+          <%= form.text_field :name, class: "form-control", :id => "name" %>
+        </div>
+      
+        <div class="form-group ps-3 pe-3">
+          <%= form.label :region %>
+          <%= form.text_field :region, class: "form-control", :id => "state" %>
+        </div>
+
+        <div class="form-group ps-3 pe-3">
+          <%= form.label :province %>
+          <%= form.text_field :province, class: "form-control", :id => "province" %>
+        </div>
+
+        <div class="form-group ps-3 pe-3">
+          <%= form.label :city %>
+          <%= form.text_field :city, class: "form-control", :id => "city" %>
+        </div>
+
+        <div class="form-group ps-3 pe-3">
+          <%= form.label :address %>
+          <%= form.text_field :address, class: "form-control", :id => "f-address" %>
+        </div>
+
+        <div class="form-group ps-3 pe-3">
+          <%= form.label :lat, "Latitude" %>
+          <%= form.text_field :lat, class: "form-control", :id => "lat" %>
+        </div>
+
+        <div class="form-group ps-3 pe-3">
+          <%= form.label :lng, "Longitude" %>
+          <%= form.text_field :lng, class: "form-control", :id => "lng" %>
+        </div>
+
+        <div class="form-group ps-3 pe-3">
+          <%= form.label :description %>
+          <%= form.text_area :description, class: "form-control" %>
+        </div>
+
+
+        <div class="form-group ps-3 pe-3">
+          <%= form.label :notes %>
+          <%= form.text_field :notes, class: "form-control" %>
+        </div>
+
+        <div class="form-group ps-3 pt-3 pb-3">
+          <%= form.submit "Create Charging Spot", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+
+      <div class="d-flex align-items-center p-2"> <span>-OR-</span> </div>
+
+      <div style="width: 50%">
+        
+        <div class="container-flouid d-flex flex-column p-3 justify-content-evenly p-5" style="height: 100%;" >
+          
+            
+            <div id="js-preview-map" class="" >
+              <img id="map" class="border border-dark img-fluid" style="object-fit: cover;" src="https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyAhhdCa7QRWRQygIVcPs1MSdmtnjgFkq1U&amp;center=14.5995124,120.9842195&amp;zoom=7&amp;size=500x300&amp;maptype=roadmap&amp;sensor=false" alt="Philippines" /> 
+            </div>
+
+            <div class="input-group input-group-sm mt-2 w-100">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Search place</span>
+              </div>
+              <input type="text" class="form-control" id="address"/>
+            </div>
+        </div>
+      <pre><code id="js-preview-json"></code></pre>
+  </div>
+ 
+
+  
+  
+  <script>
+    var locationInfo = {
+      geo: null,
+      country: null,
+      state: null,
+      city: null,
+      postalCode: null,
+      street: null,
+      streetNumber: null,
+      reset: function() {
+        this.geo = null;
+        this.country = null;
+        this.state = null;
+        this.city = null;
+        this.postalCode = null;
+        this.street = null;
+        this.streetNumber = null;
+      }
+    };
+
+    googleAutocomplete = {
+      autocompleteField: function(fieldId) {
+        (autocomplete = new google.maps.places.Autocomplete(
+          document.getElementById(fieldId)
+        )),
+          { types: ["geocode"] };
+        google.maps.event.addListener(autocomplete, "place_changed", function() {
+
+          var place = autocomplete.getPlace(),
+            address = place.address_components,
+            lat = place.geometry.location.lat(),
+            lng = place.geometry.location.lng();
+
+
+          locationInfo.reset();
+
+      
+          locationInfo.geo = [lat, lng];
+          for (var i = 0; i < address.length; i++) {
+            var component = address[i].types[0];
+            switch (component) {
+              case "country":
+                locationInfo.country = address[i]["long_name"];
+                break;
+              case "administrative_area_level_1":
+                locationInfo.state = address[i]["long_name"];
+                break;
+              case "administrative_area_level_2":
+                locationInfo.province = address[i]["long_name"];
+                break;
+              case "locality":
+                locationInfo.city = address[i]["long_name"];
+                break;
+              case "postal_code":
+                locationInfo.postalCode = address[i]["long_name"];
+                break;
+              case "route":
+                locationInfo.street = address[i]["long_name"];
+                break;
+              case "street_number":
+                locationInfo.streetNumber = address[i]["long_name"];
+                break;
+              default:
+                break;
+            }
+          }
+
+          locationInfo.name = place.name;
+          locationInfo.address = place.formatted_address;
+          locationInfo.placeId = place.place_id;
+          locationInfo.lat = lat;
+          locationInfo.lng = lng;
+
+          var json = JSON.parse(JSON.stringify(locationInfo));
+          document.getElementById("name").value = json.name ? json.name : "";
+          document.getElementById("state").value = json.state ? json.state : "";
+          document.getElementById("province").value = json.province ? json.province : "";
+          document.getElementById("city").value = json.city ? json.city : "";
+          document.getElementById("f-address").value = json.address ? json.address : "";
+          document.getElementById("lat").value = json.lat ? json.lat : "";
+          document.getElementById("lng").value = json.lng ? json.lng : "";
+          
+          var src =
+              "https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyAhhdCa7QRWRQygIVcPs1MSdmtnjgFkq1U&center=" +
+              lat +"," +lng +
+              "&zoom=13&size=500x300&markers=color:RED|" +
+              "label:A|" + lat +"," +lng +
+              "&maptype=roadmap&sensor=false",
+            img = document.createElement("img");
+
+          img.src = src;
+          document.getElementById("map").src = src;
+
+    
+          document.getElementById("jsData").value = JSON.stringify(
+            locationInfo,
+            null,
+            4
+          );
+        });
+      }
+    };
+
+
+  googleAutocomplete.autocompleteField("address");
+</script>
