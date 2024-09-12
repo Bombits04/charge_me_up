@@ -74,3 +74,5 @@ gem "rspec", "~> 3.13"
 gem "ransack", "~> 4.2"
 
 gem "mapkick-rb"
+
+gem "pagy", "~> 9.0"
