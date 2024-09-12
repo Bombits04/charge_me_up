@@ -12,7 +12,9 @@
                 <h4><%= res.name %></h4>
             </div>
             <div class="card-body">
-                <h6 class="card-title"><%= res.city %>, <%= res.province %></h6>
+                <h6 class="card-title">
+                    <%= res.address ? res.address + ", " : "" %><%= res.city ? res.city + ", " : "" %> <%= res.province %>
+                </h6>
                 <div id="collapse-example" class="collapse show" aria-labelledby="heading-example">
                     <div class="card-body">
                         <% if res.description.blank? %>
