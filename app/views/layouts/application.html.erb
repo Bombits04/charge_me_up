@@ -53,7 +53,7 @@
 
 
 <!-- Flash Messages -->
-<div class="container mt-3">
+<div class="flash-container position-fixed top-0 start-50 translate-middle-x mt-3" style="z-index: 1050;">
   <% flash.each do |type, message| %>
     <div class="alert alert-<%= bootstrap_class_for(type) %> alert-dismissible fade show" role="alert">
       <%= message %>

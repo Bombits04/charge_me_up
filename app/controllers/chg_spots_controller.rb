@@ -39,6 +39,6 @@ class ChgSpotsController < ApplicationController
   end
 
   def chg_spot_params
-    params.require(:chg_spot).permit(:name, :region, :province, :city, :barangay, :address, :description, :lat, :lng, :notes)
+    params.require(:chg_spot).permit(:name, :region, :province, :city, :barangay, :address, :description, :lat, :lng, :notes, :place_id)
   end
 end
