@@ -79,18 +79,22 @@
       <p>You must be logged in to post a comment.</p>
     <% end %>
   
+    <% if !@chg_spot.comments.blank? %>
     <h3>Previous Comments</h3>
     <div class="mt-4 text-justify float-left ">
       <% @chg_spot.comments.each do |comment| %>
         <% if comment.id != nil %>
           <div class="border p-3 mb-3">
             <h4><%= comment.user ? comment.user.username : "Anonymous" %></h4>
-            <p><%= comment.comment %></p>
+            <p style="text-indent: 2em; "><%= comment.comment %></p>
             <span class="fst-italic text-secondary">Posted <%= time_ago_in_words(comment.created_at) %> ago.</span>
           </div>
         <% end %>
       <% end %>
     </div>
+    <% else %>
+    <p>No comments yet.</p>
+  <% end %>
   </div>
 </div>
 
