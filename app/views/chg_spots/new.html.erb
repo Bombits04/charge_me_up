@@ -49,6 +49,8 @@
           <%= form.label :notes %>
           <%= form.text_field :notes, class: "form-control" %>
         </div>
+    
+         <%= form.hidden_field :place_id, class: "form-control", :id => "place_id" %>
 
         <div class="form-group ps-3 pt-3 pb-3">
           <%= form.submit "Create Charging Spot", class: "btn btn-primary" %>
@@ -88,6 +90,11 @@
       postalCode: null,
       street: null,
       streetNumber: null,
+      placeId: null,
+      name: null,
+      address: null,
+      lat: null,
+      lng: null,
       reset: function() {
         this.geo = null;
         this.country = null;
@@ -96,6 +103,11 @@
         this.postalCode = null;
         this.street = null;
         this.streetNumber = null;
+        this.placeId = null;
+        this.name = null;
+        this.address = null;
+        this.lat = null;
+        this.lng = null;
       }
     };
 
@@ -152,14 +164,16 @@
           locationInfo.lat = lat;
           locationInfo.lng = lng;
 
-          var json = JSON.parse(JSON.stringify(locationInfo));
-          document.getElementById("name").value = json.name ? json.name : "";
-          document.getElementById("state").value = json.state ? json.state : "";
-          document.getElementById("province").value = json.province ? json.province : "";
-          document.getElementById("city").value = json.city ? json.city : "";
-          document.getElementById("f-address").value = json.address ? json.address : "";
-          document.getElementById("lat").value = json.lat ? json.lat : "";
-          document.getElementById("lng").value = json.lng ? json.lng : "";
+          var data = JSON.parse(JSON.stringify(locationInfo));
+          
+          document.getElementById("name").value = data.name ? data.name : "";
+          document.getElementById("state").value = data.state ? data.state : "";
+          document.getElementById("province").value = data.province ? data.province : "";
+          document.getElementById("city").value = data.city ? data.city : "";
+          document.getElementById("f-address").value = data.address ? data.address : "";
+          document.getElementById("lat").value = data.lat ? data.lat : "";
+          document.getElementById("lng").value = data.lng ? data.lng : "";
+          document.getElementById("place_id").value = data.placeId;
           
           var src =
               "https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyAhhdCa7QRWRQygIVcPs1MSdmtnjgFkq1U&center=" +
