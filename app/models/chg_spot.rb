@@ -12,7 +12,7 @@ class ChgSpot < ApplicationRecord
 
   # Define ransackable attributes
   def self.ransackable_attributes(auth_object = nil)
-    ["name", "region", "province", "address", "barangay", "city"]
+    ["name", "region", "province", "address", "city"]
   end
 
   def self.ransackable_associations(auth_object = nil)
