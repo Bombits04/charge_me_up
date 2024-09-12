@@ -1,28 +1,39 @@
-<div class="container position-absolute" style="top:0; left:0;">
+<div class="container" style="top:0; left:0;">
     <div class="row">
         <div class="col-md-12">
             <h1>Search Results</h1>
         </div>
     </div>
-<% @result.each do |res| %>
-    
-
-    <div class="card">
-        <div class="card-header">
-            <h4><%= res.name %></h4>
-        </div>
-        <div class="card-body">
-            <h6 class="card-title"><%= res.city %>, <%= res.province %></h6>
-              <div id="collapse-example" class="collapse show" aria-labelledby="heading-example">
-                <div class="card-body">
-                    <h6><%= res.notes %></h6>
+<% if !@search_results.empty? %>
+    <%== pagy_bootstrap_nav(@pagy) %>
+    <% @search_results.each do |res| %>
+        <div class="card">
+            <div class="card-header">
+                <h4><%= res.name %></h4>
+            </div>
+            <div class="card-body">
+                <h6 class="card-title">
+                    <%= res.address ? res.address + ", " : "" %><%= res.city ? res.city + ", " : "" %> <%= res.province %>
+                </h6>
+                <div id="collapse-example" class="collapse show" aria-labelledby="heading-example">
+                    <div class="card-body">
+                        <% if res.description.blank? %>
+                            <span class="fst-italic text-secondary">No description available</span> 
+                        <% else %>
+                            <h6><%= res.description %></h6>
+                        <% end %>
+                    </div>
                 </div>
-              </div>
 
-            <%= link_to "Details", search_details_path(res), { class: "btn btn-primary", title: "" } %>
-            
+                <%= link_to "Details", search_details_path(res), { class: "btn btn-primary", title: "" } %>
+                
+            </div>
         </div>
-    </div>
-  <br>
-    <% end %>
+    <br>
+        <% end %>
+
+        <%== pagy_bootstrap_nav(@pagy) %>
+<% else %>
+    <h3>No results found</h3>
+<% end %>
 </div>

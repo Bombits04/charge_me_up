@@ -40,7 +40,7 @@
     </table>
     
       <div class="position-relative w-auto border border-1 rounded border-primary shadow">
-
+      <button class="btn btn-primary position-absolute top-0 start-0 m-2" style="z-index: 1050" onclick="window.location.href='https://www.google.com/maps/search/?api=1&query=<%= @chg_spot[:lat] %>,<%= @chg_spot[:lng] %>'">Open in Google Maps</button>
         <%= js_map [{ latitude: @chg_spot.lat, longitude: @chg_spot.lng }],
                    width: "600px",
                    height: "500px",
