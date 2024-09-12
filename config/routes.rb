@@ -13,6 +13,12 @@ Rails.application.routes.draw do
   get "search", to: "search#search", as: "search"
   get "serach_details/:id", to: "search#search_details", as: "search_details"
 
+  ## Admin
+  get "pending_spot", to: "admin#pending_chg_spot", as: "approve_spot"
+  get "pending_spot/:id", to: "admin#approve_chg_spot", as: "approve_spot_id"
+  post "pending_spot/:id", to: "admin#approve_chg_spot"
+  delete "pending_spot/:id", to: "admin#delete_chg_spot"
+
   resources :chg_spots do
     resources :comments, only: [:create]
     member do

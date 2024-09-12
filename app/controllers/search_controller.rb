@@ -2,7 +2,6 @@ class SearchController < ApplicationController
   include Pagy::Backend
 
   def search
-    Rails.logger.debug "params[:q]: #{params[:q].inspect}"
     @q = ChgSpot.ransack(params[:q])
     @result = @q.result
     @pagy, @search_results = pagy(@result)

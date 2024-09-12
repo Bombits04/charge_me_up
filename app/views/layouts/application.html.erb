@@ -31,9 +31,14 @@
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
         <% if current_user %>
-        <li class="nav-item">
-          <a class="nav-link" href="/chg_spots/new">New spot</a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/chg_spots/new">New spot</a>
+          </li>
+        <% end %>
+        <% if current_user.is_admin %>
+          <li class="nav-item">
+            <a class="nav-link" href="/pending_spot">Pending spots</a>
+          </li>
         <% end %>
       </ul>
     <form class="">
