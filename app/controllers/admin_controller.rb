@@ -18,7 +18,7 @@ class AdminController < ApplicationController
 
   def delete_chg_spot
     @chg_spot = ChgSpot.find(params[:id])
-    @chg_spot.destroy!
+    @chg_spot.destroy
 
     redirect_to root_path, notice: "Charging spot was successfully deleted. (#{@chg_spot.name})"
   end

@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get "pending_spot", to: "admin#pending_chg_spot", as: "approve_spot"
   get "pending_spot/:id", to: "admin#approve_chg_spot", as: "approve_spot_id"
   post "pending_spot/:id", to: "admin#approve_chg_spot"
+
+  get "pending_spot/:id", to: "admin#delete_chg_spot", as: "delete_spot"
   delete "pending_spot/:id", to: "admin#delete_chg_spot"
 
   resources :chg_spots do

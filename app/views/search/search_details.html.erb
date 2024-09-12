@@ -5,8 +5,9 @@
   <div class="d-flex flex-row" style="gap: 5px">  
     <%= button_to "Upvote", upvote_chg_spot_path(@chg_spot), method: :post, class: "btn btn-success btn-sm" %>
     <%= button_to "Downvote", downvote_chg_spot_path(@chg_spot), method: :post, class: "btn btn-danger btn-sm" %>
-    <%= link_to "Delete", approve_spot_id_path(@chg_spot), class: "btn btn-danger btn-sm", data: { turbo_method: :post, turbo_confirm: "Are you sure to delete #{@chg_spot.name}?" } %>
+    |
     <%= link_to "Approve", approve_spot_id_path(@chg_spot), class: "btn btn-primary btn-sm", data: { turbo_method: :post, turbo_confirm: "Are you sure to approve #{@chg_spot.name}?" } %>
+    <%= link_to "Delete", delete_spot_path(@chg_spot), class: "btn btn-danger btn-sm", data: { turbo_method: :delete, turbo_confirm: "Are you sure to delete #{@chg_spot.name}?" } %>
   </div>
 </div>
   
@@ -68,7 +69,7 @@
     <% if current_user %>
       <%= form_with(model: [@chg_spot, @chg_spot.comments.build], local: true) do |form| %>
         <div class="form-group">
-          <%= form.text_area :content, class: "form-control", placeholder: "Add a comment" %>
+          <%= form.text_area :comment, class: "form-control", placeholder: "Add a comment" %>
         </div>
         <div class="form-group">
           <%= form.submit "Post Comment", class: "btn btn-primary mt-3 mb-5" %>
