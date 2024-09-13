@@ -13,7 +13,7 @@ class AdminController < ApplicationController
     @chg_spot.is_approved = true
     @chg_spot.save
 
-    redirect_to approve_spot_path, notice: "Charging spot was successfully approved. (#{@chg_spot.name})"
+    redirect_to chg_spot_path(@chg_spot), notice: "Charging spot was successfully approved. (#{@chg_spot.name})"
   end
 
   def delete_chg_spot

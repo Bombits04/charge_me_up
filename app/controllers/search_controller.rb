@@ -2,8 +2,11 @@ class SearchController < ApplicationController
   include Pagy::Backend
 
   def search
-    @q = ChgSpot.ransack(params[:q])
+    search_query = search_params.merge(is_approved_eq: true)
+
+    @q = ChgSpot.ransack(search_query)
     @result = @q.result
+    debugger
     @pagy, @search_results = pagy(@result)
     render :search
   end
@@ -24,5 +27,11 @@ class SearchController < ApplicationController
       flash[:alert] = "Charging spot not found."
       redirect_to root_path
     end
+  end
+
+  private
+
+  def search_params
+    params.fetch(:q, {}).permit(:is_approved_eq, :name_or_region_or_province_or_city_or_address_cont) # Add other permitted params as needed
   end
 end
