@@ -6,7 +6,6 @@ class SearchController < ApplicationController
 
     @q = ChgSpot.ransack(search_query)
     @result = @q.result
-    debugger
     @pagy, @search_results = pagy(@result)
     render :search
   end
