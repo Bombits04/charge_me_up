@@ -8,7 +8,10 @@
       <%= button_to "Downvote", downvote_chg_spot_path(@chg_spot), method: :post, class: "btn btn-danger btn-sm" %>
     </div>
     <div class = "d-flex" style="gap: 10px;">
+      <% if !@chg_spot.is_approved %>
       <%= link_to "Approve", approve_spot_id_path(@chg_spot), class: "btn btn-primary btn-sm ", data: { turbo_method: :post, turbo_confirm: "Are you sure to approve #{@chg_spot.name}?" } %>
+      <% end %>
+      <%= link_to "Edit", edit_chg_spot_path(@chg_spot), class: "btn btn-primary btn-sm" %>
       <%= link_to "Delete", delete_spot_path(@chg_spot), class: "btn btn-danger btn-sm", data: { turbo_method: :delete, turbo_confirm: "Are you sure to delete #{@chg_spot.name}?" } %>
     </div>
   </div>

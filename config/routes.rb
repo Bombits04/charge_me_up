@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   get "pending_spot/:id", to: "admin#delete_chg_spot", as: "delete_spot"
   delete "pending_spot/:id", to: "admin#delete_chg_spot"
 
+  get "chg_spots/:id/edit", to: "chg_spots#edit", as: "edit_chg_spot"
+  patch "chg_spots/:id", to: "chg_spots#update", as: "update_chg_spot"
+
   resources :chg_spots do
     resources :comments, only: [:create]
     member do

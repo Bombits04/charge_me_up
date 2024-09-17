@@ -1,0 +1,77 @@
+<div class="container ">
+<div class="d-flex flex-row align-items-center justify-content-start" style="gap: 15px">
+  <h1 class="p-1 mt-2 w-auto text-wrap ml-3"><%= @chg_spot.name %></h1>
+  
+  <div class="d-flex flex-row flex-grow-1 justify-content-end" style="gap: 5px">  
+    <%= link_to "Delete", delete_spot_path(@chg_spot), class: "btn btn-danger btn-sm", data: { turbo_method: :delete, turbo_confirm: "Are you sure to delete #{@chg_spot.name}?" } %>
+  </div>
+</div>
+   <span class="ml-2">Rating: <%= @chg_spot.score %></span>
+<div class=" d-flex flex-row justify-content-center">
+ 
+      
+  <%= form_with model: @chg_spot, local: true, html: { style: "width: 50%;" } do |form| %>
+    <div class="form-group ps-3 pe-3 pt-3 mt-2 mb-2">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: "form-control", :id => "name" %>
+    </div>
+  
+    <div class="form-group ps-3 pe-3 mt-2 mb-2">
+      <%= form.label :region %>
+      <%= form.text_field :region, class: "form-control", :id => "state" %>
+    </div>
+
+    <div class="form-group ps-3 pe-3 mt-2 mb-2">
+      <%= form.label :province %>
+      <%= form.text_field :province, class: "form-control", :id => "province" %>
+    </div>
+
+    <div class="form-group ps-3 pe-3 mt-2 mb-2">
+      <%= form.label :city %>
+      <%= form.text_field :city, class: "form-control", :id => "city" %>
+    </div>
+
+    <div class="form-group ps-3 pe-3 mt-2 mb-2">
+      <%= form.label :address %>
+      <%= form.text_field :address, class: "form-control", :id => "f-address" %>
+    </div>
+
+    <div class="form-group ps-3 pe-3 mt-2 mb-2">
+      <%= form.label :lat, "Latitude" %>
+      <%= form.text_field :lat, class: "form-control", :id => "lat" %>
+    </div>
+
+    <div class="form-group ps-3 pe-3 mt-2 mb-2">
+      <%= form.label :lng, "Longitude" %>
+      <%= form.text_field :lng, class: "form-control", :id => "lng" %>
+    </div>
+
+    <div class="form-group ps-3 pe-3 mt-2 mb-2">
+      <%= form.label :description %>
+      <%= form.text_area :description, class: "form-control" %>
+    </div>
+
+
+    <div class="form-group ps-3 pe-3 mt-2 mb-2">
+      <%= form.label :notes %>
+      <%= form.text_field :notes, class: "form-control" %>
+    </div>
+
+     <%= form.hidden_field :place_id, class: "form-control", :id => "place_id" %>
+
+    <div class="form-group ps-3 pt-3 pb-3">
+      <%= form.submit "Update", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+    
+    <div style="width: 50%">
+      <div class="container-flouid d-flex p-3 justify-content-center align-items-center" style="height: 100%; width: 100%;" >
+          <div id="js-preview-map" class="" >
+              <img id="map" class="border border-dark img-fluid" style="object-fit: cover;" src="https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyAhhdCa7QRWRQygIVcPs1MSdmtnjgFkq1U&amp;center=<%= @chg_spot.lat %>,<%= @chg_spot.lng %>&zoom=16&size=550x600&markers=color:RED|label:A|<%= @chg_spot.lat %>,<%= @chg_spot.lng %>&amp;size=550x600&amp;maptype=roadmap&amp;sensor=false" alt="Philippines" /> 
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 
