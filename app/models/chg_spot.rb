@@ -7,6 +7,8 @@ class ChgSpot < ApplicationRecord
   ## validations
   validates :name, presence: true
   validates :address, presence: true
+  validates :lat, presence: true
+  validates :lng, presence: true
 
   after_initialize :set_default_score, if: :new_record?
 

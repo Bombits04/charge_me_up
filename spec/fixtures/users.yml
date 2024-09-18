@@ -1,0 +1,15 @@
+<%require 'bcrypt'%>
+user:
+  {
+    email: "johndoe@gmail.com",
+    encrypted_password: <%= BCrypt::Password.create('password') %>,
+    is_admin: false,
+    username: "johndoe",
+  }
+admin:
+  {
+    email: "admin@gmail.com",
+    encrypted_password: <%= BCrypt::Password.create('password') %>,
+    is_admin: true,
+    username: "admin",
+  }
