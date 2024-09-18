@@ -10,7 +10,7 @@
 <div class=" d-flex flex-row justify-content-center">
  
       
-  <%= form_with model: @chg_spot, local: true, html: { style: "width: 50%;" } do |form| %>
+  <%= form_with url: chg_spot_path, method: :patch, scope: :chg_spot, html: { style: "width: 50%;", id: 'chg_spot_form' } do |form| %>
     <div class="form-group ps-3 pe-3 pt-3 mt-2 mb-2">
       <%= form.label :name %>
       <%= form.text_field :name, class: "form-control", :id => "name" %>
@@ -60,7 +60,7 @@
      <%= form.hidden_field :place_id, class: "form-control", :id => "place_id" %>
 
     <div class="form-group ps-3 pt-3 pb-3">
-      <%= form.submit "Update", class: "btn btn-primary" %>
+      <%= form.submit "Update", :id => "update", class: "btn btn-primary" %>
     </div>
   <% end %>
     

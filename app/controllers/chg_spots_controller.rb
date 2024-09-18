@@ -1,6 +1,6 @@
 class ChgSpotsController < ApplicationController
   before_action :authenticate_user!, only: [:upvote, :downvote, :new, :create, :edit, :update]
-  before_action :set_chg_spot, only: [:upvote, :downvote]
+  before_action :set_chg_spot, only: [:upvote, :downvote, :edit, :update]
 
   def upvote
     @chg_spot.upvote
@@ -38,17 +38,15 @@ class ChgSpotsController < ApplicationController
 
   def update
     @chg_spot = ChgSpot.find(params[:id])
-    @chg_spot.update(chg_spot_params)
     name = current_user.username ? current_user.username : current_user.email
     @chg_spot.updated_by = name
-    @chg_spot.updated_at = Time.now
 
-    if @chg_spot.save
+    if @chg_spot.update(chg_spot_params)
       flash[:notice] = "Charging spot updated successfully."
       redirect_to search_details_path(@chg_spot)
     else
       flash[:alert] = "There was an error updating the charging spot."
-      render :edit
+      redirect_to edit_chg_spot_path(@chg_spot)
     end
   end
 
